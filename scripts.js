@@ -27,6 +27,7 @@ function validate_guess(guess) {
 }
 
 function submit_guess() {
+  $("#error").hide();
   var guess = $("#guess").val();
   if (validate_guess(guess)) {
     console.log("validated");
@@ -43,6 +44,8 @@ function submit_guess() {
 }
 
 function clear_guess() {
+  $("#error").hide();
+  $("#response").hide();
   $("#guess").val("")
 }
 
