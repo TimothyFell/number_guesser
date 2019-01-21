@@ -1,13 +1,12 @@
 function set_num() {
-  min = 1;
-  max = 100;
+  min = $("#min").html();
+  max = $("#max").html();
   correct_number = Math.ceil(Math.random() * max);
   $("#error").hide();
   $("#response").hide();
   $("#clear").attr("disabled", "disabled");
   $("#reset").attr("disabled", "disabled");
 }
-
 
 function check_guess(guess) {
   if (guess < correct_number) {
@@ -44,6 +43,8 @@ function submit_guess() {
     $("#response-message").html(check_guess(guess));
     return true
   } else {
+    $("#response").hide();
+    $("#guess").val("")
     console.log("didnt validate");
     $("#error").show();
     return false
@@ -66,7 +67,6 @@ function reset_game() {
 
 window.onload = set_num;
 
-
 $(document).ready( function() {
 
   $("#submit").click(submit_guess);
@@ -74,5 +74,7 @@ $(document).ready( function() {
   $("#clear").click(clear_guess);
 
   $("#reset").click(reset_game);
+
+  $("#update").click(reset_game);
 
 });
