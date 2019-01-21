@@ -4,6 +4,8 @@ function set_num() {
   correct_number = Math.ceil(Math.random() * max);
   $("#error").hide();
   $("#response").hide();
+  $("#clear").attr("disabled", "disabled");
+  $("#reset").attr("disabled", "disabled");
 }
 
 
@@ -20,6 +22,10 @@ function check_guess(guess) {
 function validate_guess(guess) {
   var guess_num = parseInt(guess);
   if (isNaN(guess_num)) {
+    $("#error").html("That's not a number, try again.");
+    return false
+  } else if (guess_num > max || guess_num < min) {
+    $("#error").html("That's outside our range, try again.");
     return false
   } else {
     return true
@@ -28,6 +34,8 @@ function validate_guess(guess) {
 
 function submit_guess() {
   $("#error").hide();
+  $("#clear").attr("disabled", null);
+  $("#reset").attr("disabled", null);
   var guess = $("#guess").val();
   if (validate_guess(guess)) {
     console.log("validated");
@@ -38,7 +46,6 @@ function submit_guess() {
   } else {
     console.log("didnt validate");
     $("#error").show();
-    $("#error").html("That's not a number, try again.");
     return false
   }
 }
@@ -47,6 +54,14 @@ function clear_guess() {
   $("#error").hide();
   $("#response").hide();
   $("#guess").val("")
+  $("#clear").attr("disabled", "disabled");
+}
+
+function reset_game() {
+  $("#guess").val("")
+  set_num();
+  $("#error").html("New Game!");
+  $("#error").show();
 }
 
 window.onload = set_num;
@@ -57,5 +72,7 @@ $(document).ready( function() {
   $("#submit").click(submit_guess);
 
   $("#clear").click(clear_guess);
+
+  $("#reset").click(reset_game);
 
 });
