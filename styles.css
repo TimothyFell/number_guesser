@@ -42,6 +42,10 @@ h1 {
   padding: 40px 0;
 }
 
+#base-game {
+  padding-bottom:20px;
+}
+
 input[type="text"] {
   width:100%;
   font-size:1.5em;
@@ -82,10 +86,6 @@ input[type="submit"].disabled:hover {
   cursor: auto;
 }
 
-#response {
-  padding:20px 0;
-}
-
 h2 {
   font-size:10em;
   color:#ed458b;
@@ -98,5 +98,6 @@ h3 {
 }
 
 #reset {
+  margin:20px 0 0 0;
   width:100%;
 }
