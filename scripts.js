@@ -42,11 +42,17 @@ function submit_guess() {
   }
 }
 
+function clear_guess() {
+  $("#guess").val("")
+}
+
 window.onload = set_num;
 
 
 $(document).ready( function() {
 
   $("#submit").click(submit_guess);
+
+  $("#clear").click(clear_guess);
 
 });
