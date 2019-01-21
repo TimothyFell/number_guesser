@@ -1,31 +1,48 @@
-
-
-function check_guess() {
-
+function set_num() {
+  min = 1;
+  max = 100;
+  correct_number = Math.ceil(Math.random() * max);
+  $("#error").hide();
+  $("#response").hide();
 }
 
-function validate_guess() {
 
+function check_guess(guess) {
+  if (guess < correct_number) {
+    return "That is too low"
+  } else if (guess > correct_number) {
+    return "That is too high"
+  } else {
+    return "BOOM!"
+  }
+}
+
+function validate_guess(guess) {
+  var guess_num = parseInt(guess);
+  if (isNaN(guess_num)) {
+    return false
+  } else {
+    return true
+  }
 }
 
 function submit_guess() {
-// store guess as variable
   var guess = $("#guess").val();
-// validates guess and checks guess to see if its correct
-  var response = check_guess(guess);
-
-  $(#response).show();
+  if (validate_guess(guess)) {
+    console.log("validated");
+    $("#response").show();
+    $("#recent-guess").html(guess);
+    $("#response-message").html(check_guess(guess));
+    return true
+  } else {
+    console.log("didnt validate");
+    $("#error").show();
+    $("#error").html("That's not a number, try again.");
+    return false
+  }
 }
 
-function clear_guess() {
-
-}
-
-
-
-function reset_game() {
-
-}
+window.onload = set_num;
 
 
 $(document).ready( function() {
