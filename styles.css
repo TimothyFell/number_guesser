@@ -101,3 +101,17 @@ h3 {
   margin:20px 0 0 0;
   width:100%;
 }
+
+.min-max {
+  padding-bottom:20px;
+}
+
+#update {
+  margin-top:10px;
+}
+
+#min, #max, label {
+  display: inline-block;
+  width: 45%;
+  margin: 0 2%;
+}

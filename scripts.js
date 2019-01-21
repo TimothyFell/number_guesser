@@ -1,13 +1,14 @@
 function set_num() {
-  min = 1;
-  max = 100;
+  min = $("#min").val();
+  max = $("#max").val();
   correct_number = Math.ceil(Math.random() * max);
   $("#error").hide();
   $("#response").hide();
   $("#clear").attr("disabled", "disabled");
-  $("#reset").attr("disabled", "disabled");
+  if (min > 0) {
+    $("#reset").attr("disabled", "disabled");
+  }
 }
-
 
 function check_guess(guess) {
   if (guess < correct_number) {
@@ -15,6 +16,14 @@ function check_guess(guess) {
   } else if (guess > correct_number) {
     return "That is too high"
   } else {
+    current_min = $("#min").val();
+    current_max = $("#max").val();
+    $("#min").val(parseInt(current_min) - 10);
+    $("#max").val(parseInt(current_max) + 10);
+    $("#guess").val("")
+    set_num();
+    $("#error").html("It just got harder.<br>Minimum is 10 lower.<br>Maximum is 10 higher.");
+    $("#error").show();
     return "BOOM!"
   }
 }
@@ -44,6 +53,8 @@ function submit_guess() {
     $("#response-message").html(check_guess(guess));
     return true
   } else {
+    $("#response").hide();
+    $("#guess").val("")
     console.log("didnt validate");
     $("#error").show();
     return false
@@ -58,6 +69,15 @@ function clear_guess() {
 }
 
 function reset_game() {
+  $("#min").val(1);
+  $("#max").val(100);
+  $("#guess").val("")
+  set_num();
+  $("#error").html("New Game!");
+  $("#error").show();
+}
+
+function update_game() {
   $("#guess").val("")
   set_num();
   $("#error").html("New Game!");
@@ -66,7 +86,6 @@ function reset_game() {
 
 window.onload = set_num;
 
-
 $(document).ready( function() {
 
   $("#submit").click(submit_guess);
@@ -74,5 +93,7 @@ $(document).ready( function() {
   $("#clear").click(clear_guess);
 
   $("#reset").click(reset_game);
+
+  $("#update").click(update_game);
 
 });
