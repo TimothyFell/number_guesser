@@ -77,11 +77,11 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
-input[type="submit"].disabled {
+input[type="submit"][disabled="disabled"] {
   background-color:#d0d2d3;
 }
 
-input[type="submit"].disabled:hover {
+input[type="submit"][disabled="disabled"]:hover {
   background-color:#d0d2d3;
   cursor: auto;
 }
