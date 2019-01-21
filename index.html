@@ -3,18 +3,35 @@
   <head>
     <meta charset="utf-8">
     <title>Number Guesser</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <header>
-
+      <div class="container">
+        <h1><span class="neon">Number</span> Guesser</h1>
+      </div>
     </header>
     <section class="main">
       <div class="container">
-        <div class="game">
+        <div id="game">
 
+          <div id="base-game">
+            <input type="text" name="guess" placeholder="Enter Your Guess">
+            <input type="submit" name="guess_submit" value="Guess">
+            <input type="submit" name="clear" value="Clear">
+          </div>
 
-          
+          <div id="response">
+            <h3>Your last guess was</h3>
 
+            <h2 id="recent-guess">25</h2>
+
+            <h3 id="response-message">That is too high</h3>
+          </div>
+
+          <input id="reset" type="submit" name="reset" value="Reset">
         </div>
       </div>
     </section>
