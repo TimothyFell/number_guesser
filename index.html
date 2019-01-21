@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Number Guesser</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header>
@@ -18,12 +18,12 @@
         <div id="game">
 
           <div id="base-game">
-            <input type="text" name="guess" placeholder="Enter Your Guess">
-            <input type="submit" name="guess_submit" value="Guess">
-            <input type="submit" name="clear" value="Clear">
+            <input type="text" name="guess" placeholder="Enter Your Guess" id="guess">
+            <input type="submit" name="guess_submit" value="Guess" id="submit">
+            <input type="submit" name="clear" value="Clear" id="clear">
           </div>
 
-          <div id="response">
+          <div id="response" class="hidden">
             <h3>Your last guess was</h3>
 
             <h2 id="recent-guess">25</h2>
