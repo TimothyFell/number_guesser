@@ -1,12 +1,12 @@
-// initial game setup
+var turns = 0
+
 function set_num() {
-  // sets minimum of range
+  turns = 0
   min = $("#min").val();
   // sets maximum of range
   max = $("#max").val();
-  // randomly selects a number from the range
-  correct_number = Math.ceil(Math.random() * max);
-  // hides any errors and messages from last round
+  // correct_number = Math.ceil(Math.random() * (Math.abs(max)); doesnt generatue negative numbers
+  correct_number = Math.ceil( Math.random() * Math.abs(max) ) - Math.abs(min);
   $("#error").hide();
   $("#response").hide();
   // disables clear button
@@ -20,22 +20,22 @@ function set_num() {
 // checks to see if guess is correct and provides feedback if not
 function check_guess(guess) {
   if (guess < correct_number) {
+    turns += 1
     return "That is too low"
   } else if (guess > correct_number) {
+    turns += 1
     return "That is too high"
   } else {
-    // pull in current min-maxs
-    current_min = $("#min").val();
-    current_max = $("#max").val();
-    // update min-maxs on win
+    turns += 1
+    var current_min = $("#min").val();
+    var current_max = $("#max").val();
     $("#min").val(parseInt(current_min) - 10);
     $("#max").val(parseInt(current_max) + 10);
     // clear guess input field
     $("#guess").val("")
     // set min-max, pick new number on new range, hide errors and messages and disable unneccessary buttons
     set_num();
-    //inform user things changed
-    $("#error").html("It just got harder.<br>Minimum is 10 lower.<br>Maximum is 10 higher.");
+    $("#error").html(`That took you ${turns} turns.<br>It just got harder.<br>Minimum is 10 lower.<br>Maximum is 10 higher.`);
     $("#error").show();
     // win message
     return "BOOM!"
@@ -72,7 +72,6 @@ function submit_guess() {
   var guess = $("#guess").val();
   // validate guess
   if (validate_guess(guess)) {
-    //if good, show response with guess and feedback
     $("#response").show();
     $("#recent-guess").html(guess);
     $("#response-message").html(check_guess(guess));
